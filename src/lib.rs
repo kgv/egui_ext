@@ -7,6 +7,7 @@ pub use self::{
     response::InnerResponseExt,
     table::{TableBodyExt, TableRowExt},
     ui::UiExt,
+    with_visuals::WithVisuals,
 };
 
 mod collapsing_state;
@@ -17,3 +18,4 @@ mod labeled_separator;
 mod response;
 mod table;
 mod ui;
+mod with_visuals;
