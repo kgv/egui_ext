@@ -1,6 +1,7 @@
 pub use self::{
     collapsing_state::CollapsingStateExt,
     color::color,
+    dark_light_mode_switch::DarkLightModeSwitch,
     dropped_file::DroppedFileExt,
     hovered_file::HoveredFileExt,
     labeled_separator::LabeledSeparator,
@@ -12,6 +13,7 @@ pub use self::{
 
 mod collapsing_state;
 mod color;
+mod dark_light_mode_switch;
 mod dropped_file;
 mod hovered_file;
 mod labeled_separator;
