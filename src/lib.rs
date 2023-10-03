@@ -4,6 +4,7 @@ pub use self::{
     dark_light_mode_switch::DarkLightModeSwitch,
     dropped_file::DroppedFileExt,
     hovered_file::HoveredFileExt,
+    label::ClickedLabel,
     labeled_separator::LabeledSeparator,
     response::InnerResponseExt,
     table::{TableBodyExt, TableRowExt},
@@ -16,6 +17,7 @@ mod color;
 mod dark_light_mode_switch;
 mod dropped_file;
 mod hovered_file;
+mod label;
 mod labeled_separator;
 mod response;
 mod table;
