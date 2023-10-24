@@ -1,4 +1,5 @@
 pub use self::{
+    collapsing_button::CollapsingButton,
     collapsing_state::CollapsingStateExt,
     color::color,
     dark_light_mode_switch::DarkLightModeSwitch,
@@ -12,6 +13,7 @@ pub use self::{
     with_visuals::WithVisuals,
 };
 
+mod collapsing_button;
 mod collapsing_state;
 mod color;
 mod dark_light_mode_switch;
