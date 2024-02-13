@@ -4,7 +4,7 @@ version = "0.0.10"
 edition = "2021"
 
 [dependencies]
-eframe = { version = "0.26.1", default-features = false }
+eframe = "0.26.1"
 egui = { version = "0.26.1", default-features = false }
-thiserror = "1.0.57"
 egui_extras = "0.26.1"
+thiserror = "1.0.57"
