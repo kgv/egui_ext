@@ -7,4 +7,4 @@ edition = "2021"
 eframe = "0.26.1"
 egui = { version = "0.26.1", default-features = false }
 egui_extras = "0.26.1"
-thiserror = "1.0.57"
+thiserror = "1.0.58"
