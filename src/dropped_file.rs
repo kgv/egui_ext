@@ -1,7 +1,7 @@
 use egui::DroppedFile;
 use std::{
     fmt::{self, Formatter},
-    fs::read_to_string,
+    fs::{read, read_to_string},
     io,
     string::FromUtf8Error,
 };
@@ -9,6 +9,8 @@ use thiserror::Error;
 
 /// Extension methods for [`DroppedFile`]
 pub trait DroppedFileExt {
+    fn bytes(&self) -> Result<Vec<u8>>;
+
     fn content(&self) -> Result<String>;
 
     fn display(&self) -> Display;
@@ -17,14 +19,18 @@ pub trait DroppedFileExt {
 }
 
 impl DroppedFileExt for DroppedFile {
-    fn content(&self) -> Result<String> {
+    fn bytes(&self) -> Result<Vec<u8>> {
         Ok(match &self.bytes {
-            Some(bytes) => String::from_utf8(bytes.to_vec())?,
+            Some(bytes) => bytes.to_vec(),
             None => match &self.path {
-                Some(path) => read_to_string(path)?,
+                Some(path) => read(path)?,
                 None => return Err(Error::BytesOrPathNotFoud),
             },
         })
+    }
+
+    fn content(&self) -> Result<String> {
+        Ok(String::from_utf8(self.bytes()?)?)
     }
 
     fn display(&self) -> Display {

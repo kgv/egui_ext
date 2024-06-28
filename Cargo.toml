@@ -1,10 +1,10 @@
 [package]
 name = "egui_ext"
-version = "0.0.10"
+version = "0.0.12"
 edition = "2021"
 
 [dependencies]
 eframe = { version = "0.27.2", default-features = false }
 egui = { version = "0.27.2", default-features = false }
-thiserror = "1.0.58"
+thiserror = "1.0.61"
 egui_extras = "0.27.2"
