@@ -1,11 +1,10 @@
 [package]
 name = "egui_ext"
-version = "0.0.13"
+version = "0.0.14"
 edition = "2021"
 
 [dependencies]
-eframe = { version = "0.28.0", default-features = false }
-egui = { version = "0.28.0", default-features = false }
+eframe = { version = "0.28.1", default-features = false }
+egui = { version = "0.28.1", default-features = false }
 thiserror = "1.0.61"
-# https://github.com/emilk/egui/issues/4771
-egui_extras = { version = "0.28.0", features = ["serde"] }
+egui_extras = "0.28.1"
