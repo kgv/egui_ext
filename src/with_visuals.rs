@@ -1,6 +1,6 @@
 use egui::{Ui, Visuals};
 
-/// Extension methods for [`Ui`]
+/// [`Ui`] extension methods
 pub trait WithVisuals {
     fn with_visuals(&mut self, f: impl FnMut(&mut Self, &mut Visuals));
 }
