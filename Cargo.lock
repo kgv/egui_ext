@@ -384,9 +384,9 @@ dependencies = [
 
 [[package]]
 name = "egui-phosphor"
-version = "0.7.1"
+version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b3e0a31856effd375729ef9fc853a2a1091708552968d0fc979873b8a1be8ef1"
+checksum = "134c93958b82a3b486b1992636c44e585b8f22bdab845b7bf6fad69dc9b733a2"
 dependencies = [
  "egui",
 ]
@@ -410,7 +410,7 @@ dependencies = [
 
 [[package]]
 name = "egui_ext"
-version = "0.0.17"
+version = "0.0.18"
 dependencies = [
  "eframe",
  "egui",
