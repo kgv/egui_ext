@@ -336,7 +336,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "775cfde491852059e386c4e1deb4aef381c617dc364184c6f6afee99b87c402b"
 dependencies = [
  "bytemuck",
- "emath",
+ "emath 0.29.1",
+]
+
+[[package]]
+name = "ecolor"
+version = "0.30.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d72e9c39f6e11a2e922d04a34ec5e7ef522ea3f5a1acfca7a19d16ad5fe50f5"
+dependencies = [
+ "emath 0.30.0",
 ]
 
 [[package]]
@@ -348,7 +357,7 @@ dependencies = [
  "ahash",
  "bytemuck",
  "document-features",
- "egui",
+ "egui 0.29.1",
  "egui-winit",
  "image",
  "js-sys",
@@ -376,10 +385,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "53eafabcce0cb2325a59a98736efe0bf060585b437763f8c476957fb274bb974"
 dependencies = [
  "ahash",
- "emath",
- "epaint",
+ "emath 0.29.1",
+ "epaint 0.29.1",
  "log",
  "nohash-hasher",
+]
+
+[[package]]
+name = "egui"
+version = "0.30.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "252d52224d35be1535d7fd1d6139ce071fb42c9097773e79f7665604f5596b5e"
+dependencies = [
+ "ahash",
+ "emath 0.30.0",
+ "epaint 0.30.0",
+ "nohash-hasher",
+ "profiling",
 ]
 
 [[package]]
@@ -388,7 +410,7 @@ version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "134c93958b82a3b486b1992636c44e585b8f22bdab845b7bf6fad69dc9b733a2"
 dependencies = [
- "egui",
+ "egui 0.29.1",
 ]
 
 [[package]]
@@ -399,7 +421,7 @@ checksum = "0a9c430f4f816340e8e8c1b20eec274186b1be6bc4c7dfc467ed50d57abc36c6"
 dependencies = [
  "ahash",
  "arboard",
- "egui",
+ "egui 0.29.1",
  "log",
  "raw-window-handle",
  "smithay-clipboard",
@@ -413,7 +435,7 @@ name = "egui_ext"
 version = "0.0.18"
 dependencies = [
  "eframe",
- "egui",
+ "egui 0.29.1",
  "egui-phosphor",
  "egui_extras",
  "thiserror",
@@ -421,15 +443,16 @@ dependencies = [
 
 [[package]]
 name = "egui_extras"
-version = "0.29.1"
+version = "0.30.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf3c1f5cd8dfe2ade470a218696c66cf556fcfd701e7830fa2e9f4428292a2a1"
+checksum = "3d7a8198c088b1007108cb2d403bc99a5e370999b200db4f14559610d7330126"
 dependencies = [
  "ahash",
- "egui",
+ "egui 0.30.0",
  "enum-map",
  "log",
  "mime_guess2",
+ "profiling",
 ]
 
 [[package]]
@@ -440,6 +463,12 @@ checksum = "b1fe0049ce51d0fb414d029e668dd72eb30bc2b739bf34296ed97bd33df544f3"
 dependencies = [
  "bytemuck",
 ]
+
+[[package]]
+name = "emath"
+version = "0.30.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4fe73c1207b864ee40aa0b0c038d6092af1030744678c60188a05c28553515d"
 
 [[package]]
 name = "enum-map"
@@ -471,11 +500,26 @@ dependencies = [
  "ab_glyph",
  "ahash",
  "bytemuck",
- "ecolor",
- "emath",
+ "ecolor 0.29.1",
+ "emath 0.29.1",
  "log",
  "nohash-hasher",
  "parking_lot",
+]
+
+[[package]]
+name = "epaint"
+version = "0.30.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5666f8d25236293c966fbb3635eac18b04ad1914e3bab55bc7d44b9980cafcac"
+dependencies = [
+ "ab_glyph",
+ "ahash",
+ "ecolor 0.30.0",
+ "emath 0.30.0",
+ "nohash-hasher",
+ "parking_lot",
+ "profiling",
 ]
 
 [[package]]
@@ -1153,6 +1197,12 @@ checksum = "5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77"
 dependencies = [
  "unicode-ident",
 ]
+
+[[package]]
+name = "profiling"
+version = "1.0.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "afbdc74edc00b6f6a218ca6a5364d6226a259d4b8ea1af4a0ea063f27e179f4d"
 
 [[package]]
 name = "quick-xml"
