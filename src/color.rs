@@ -7,14 +7,3 @@ pub fn color(index: usize) -> Color32 {
     let h = index as f32 * golden_ratio;
     Hsva::new(h, 0.85, 0.5, 1.0).into()
 }
-
-/// Extension methods for [`Color32`]
-pub trait Color32Ext {
-    fn golden_ratio(index: usize) -> Self;
-}
-
-impl Color32Ext for Color32 {
-    fn golden_ratio(index: usize) -> Self {
-        color(index)
-    }
-}

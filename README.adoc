@@ -1,3 +1,7 @@
 = egui extension
 
 Extension methods for link:https://github.com/emilk/egui[`egui`]
+
+== Build
+
+`cargo build --target=wasm32-unknown-unknown`

@@ -1,7 +1,7 @@
 use egui::DroppedFile;
 use std::{
     fmt::{self, Formatter},
-    fs::{read, read_to_string},
+    fs::read,
     io,
     string::FromUtf8Error,
 };
