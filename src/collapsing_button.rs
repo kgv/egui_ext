@@ -1,6 +1,6 @@
 use egui::{
-    collapsing_header::paint_default_icon, pos2, Button, Id, InnerResponse, Response, Ui, Vec2,
-    WidgetText,
+    Button, Id, InnerResponse, Response, Ui, Vec2, WidgetText,
+    collapsing_header::paint_default_icon, pos2,
 };
 use std::hash::Hash;
 

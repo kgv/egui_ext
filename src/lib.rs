@@ -20,5 +20,4 @@ mod label;
 mod labeled_separator;
 mod light_dark_button;
 mod response;
-mod ui;
 mod with_visuals;

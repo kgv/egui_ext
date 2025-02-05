@@ -1,13 +1,15 @@
 [package]
 name = "egui_ext"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 [dependencies]
-eframe = { version = "0.30.0", default-features = false, features = ["glow"] }
-egui = { version = "0.30.0", default-features = false }
+eframe = { version = "0.31.0", default-features = false, features = [
+    "wayland",
+] }
+egui = { version = "0.31.0", default-features = false }
 egui-phosphor = "0.8.0"
-egui_extras = "0.30.0"
+egui_extras = "0.31.0"
 thiserror = "2.0.11"
 
 # Web
