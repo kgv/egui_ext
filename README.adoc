@@ -4,4 +4,6 @@ Extension methods for link:https://github.com/emilk/egui[`egui`]
 
 == Build
 
-`cargo build --target=wasm32-unknown-unknown`
+`cargo build --target=wasm32-unknown-unknown --features "eframe/wayland,eframe/wgpu"`
+
+`cargo build --target=wasm32-unknown-unknown --features "markdown,eframe/wayland,eframe/wgpu"`

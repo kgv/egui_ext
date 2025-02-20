@@ -19,5 +19,7 @@ mod hovered_file;
 mod label;
 mod labeled_separator;
 mod light_dark_button;
+#[cfg(feature = "markdown")]
+mod markdown;
 mod response;
 mod with_visuals;
