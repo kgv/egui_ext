@@ -17,14 +17,12 @@ impl LightDarkButton for Ui {
             {
                 self.ctx().set_visuals(Visuals::light());
             }
-        } else {
-            if self
-                .button(RichText::new(MOON).size(size))
-                .on_hover_text("Switch to dark mode")
-                .clicked()
-            {
-                self.ctx().set_visuals(Visuals::dark());
-            }
+        } else if self
+            .button(RichText::new(MOON).size(size))
+            .on_hover_text("Switch to dark mode")
+            .clicked()
+        {
+            self.ctx().set_visuals(Visuals::dark());
         }
     }
 }
