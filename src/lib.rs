@@ -13,13 +13,12 @@ mod collapsing_state;
 mod color;
 mod dark_light_mode_switch;
 #[cfg(target_arch = "wasm32")]
-mod download;
+pub mod download;
 mod dropped_file;
 mod hovered_file;
 mod label;
 mod labeled_separator;
 mod light_dark_button;
-#[cfg(feature = "markdown")]
-mod markdown;
 mod response;
+mod ui;
 mod with_visuals;
