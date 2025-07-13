@@ -13,7 +13,7 @@ pub trait DroppedFileExt {
 
     fn content(&self) -> Result<String>;
 
-    fn display(&self) -> Display;
+    fn display(&self) -> Display<'_>;
 
     fn name(&self) -> &str;
 }
@@ -33,7 +33,7 @@ impl DroppedFileExt for DroppedFile {
         Ok(String::from_utf8(self.bytes()?)?)
     }
 
-    fn display(&self) -> Display {
+    fn display(&self) -> Display<'_> {
         Display(self)
     }
 

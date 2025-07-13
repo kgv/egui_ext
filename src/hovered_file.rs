@@ -3,11 +3,11 @@ use std::fmt::{self, Formatter};
 
 /// Extension methods for [`HoveredFile`]
 pub trait HoveredFileExt {
-    fn display(&self) -> Display;
+    fn display(&self) -> Display<'_>;
 }
 
 impl HoveredFileExt for HoveredFile {
-    fn display(&self) -> Display {
+    fn display(&self) -> Display<'_> {
         Display(self)
     }
 }
