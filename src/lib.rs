@@ -4,9 +4,10 @@ pub use self::{
     hovered_file::HoveredFileExt, label::ClickedLabel, labeled_separator::LabeledSeparator,
     light_dark_button::LightDarkButton, response::InnerResponseExt, with_visuals::WithVisuals,
 };
-
 #[cfg(target_arch = "wasm32")]
 pub use download::download;
+#[cfg(feature = "markdown")]
+pub use markdown::Markdown;
 
 mod collapsing_button;
 mod collapsing_state;
@@ -19,6 +20,7 @@ mod hovered_file;
 mod label;
 mod labeled_separator;
 mod light_dark_button;
+#[cfg(feature = "markdown")]
+mod markdown;
 mod response;
-mod ui;
 mod with_visuals;

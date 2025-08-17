@@ -5,28 +5,30 @@ use std::{collections::HashMap, sync::Arc};
 /// Extension methods for [`Ui`]
 ///
 /// `ui.markdown("$X_2$");`
-pub trait UiExt {
+pub trait Markdown {
     fn markdown(&mut self, markdown: &str);
 }
 
-impl UiExt for Ui {
+impl Markdown for Ui {
     fn markdown(&mut self, markdown: &str) {
-        let map = self.data_mut(|data| {
-            data.get_temp_mut_or_default::<Arc<Mutex<HashMap<_, _>>>>(Id::new(
-                "global_egui_commonmark_map",
-            ))
-            .clone()
-        });
-        let cache = self.data_mut(|data| {
-            data.get_temp_mut_or_default::<Arc<Mutex<CommonMarkCache>>>(Id::new(
-                "global_egui_commonmark_cache",
-            ))
-            .clone()
-        });
+        let cache = (
+            self.data_mut(|data| {
+                data.get_temp_mut_or_default::<Arc<Mutex<HashMap<_, _>>>>(Id::new(
+                    "GlobalMathCache",
+                ))
+                .clone()
+            }),
+            self.data_mut(|data| {
+                data.get_temp_mut_or_default::<Arc<Mutex<CommonMarkCache>>>(Id::new(
+                    "GlobalMarkdownCache",
+                ))
+                .clone()
+            }),
+        );
         CommonMarkViewer::new()
             .render_math_fn(Some(&move |ui, math, inline| {
-                let mut map = map.lock();
-                let svg = map
+                let mut cache = cache.0.lock();
+                let svg = cache
                     .entry(math.to_string())
                     .or_insert_with(|| render_math(math, inline));
                 let uri = format!("{}.svg", Id::from(math.to_string()).value());
@@ -41,7 +43,7 @@ impl UiExt for Ui {
                     .fit_to_original_size(1.0),
                 );
             }))
-            .show(self, &mut cache.lock(), markdown);
+            .show(self, &mut cache.1.lock(), markdown);
     }
 }
 
