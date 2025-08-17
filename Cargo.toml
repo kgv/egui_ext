@@ -8,7 +8,7 @@ eframe = { version = "0.32.1", default-features = false }
 egui = { version = "0.32.1", default-features = false }
 egui-phosphor = "0.10.0"
 egui_extras = "0.32.1"
-thiserror = "2.0.14"
+thiserror = "2.0.15"
 
 egui_commonmark = { version = "0.21.1", optional = true }
 mathjax_svg = { version = "3.1.2", optional = true }
