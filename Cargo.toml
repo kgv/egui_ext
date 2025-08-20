@@ -4,10 +4,10 @@ version = "0.4.1"
 edition = "2024"
 
 [dependencies]
-eframe = { version = "0.32.1", default-features = false }
-egui = { version = "0.32.1", default-features = false }
+eframe = { version = "0.32.3", default-features = false }
+egui = { version = "0.32.3", default-features = false }
 egui-phosphor = "0.10.0"
-egui_extras = "0.32.1"
+egui_extras = "0.32.3"
 thiserror = "2.0.16"
 
 egui_commonmark = { version = "0.21.1", optional = true }

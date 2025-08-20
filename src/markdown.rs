@@ -53,6 +53,7 @@ fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
     } else {
         mathjax_svg::convert_to_svg(math).unwrap()
     }
+    .replace("currentColor", "white")
     .into_bytes()
     .into()
 }
