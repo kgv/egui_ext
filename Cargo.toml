@@ -10,8 +10,8 @@ egui-phosphor = "0.10.0"
 egui_extras = "0.32.1"
 thiserror = "2.0.16"
 
-egui_commonmark = { version = "0.21.1", optional = true }
-mathjax_svg = { version = "3.1.2", optional = true }
+# egui_commonmark = { version = "0.21.1", optional = true }
+# mathjax_svg = { version = "3.1.2", optional = true }
 tracing = { version = "0.1.41", optional = true }
 
 # Web
@@ -27,4 +27,4 @@ web-sys = { version = "0.3.77", features = [
 
 [features]
 default = []
-markdown = ["dep:egui_commonmark", "dep:mathjax_svg", "egui_extras/svg"]
+# markdown = ["dep:egui_commonmark", "dep:mathjax_svg", "egui_extras/svg"]
