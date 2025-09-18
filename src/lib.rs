@@ -2,7 +2,7 @@ pub use self::{
     collapsing_button::CollapsingButton, collapsing_state::CollapsingStateExt, color::color,
     dark_light_mode_switch::DarkLightModeSwitch, dropped_file::DroppedFileExt,
     hovered_file::HoveredFileExt, label::ClickedLabel, labeled_separator::LabeledSeparator,
-    light_dark_button::LightDarkButton, response::InnerResponseExt, with_visuals::WithVisuals,
+    light_dark_button::LightDarkButton, response::ResponseExt, with_visuals::WithVisuals,
 };
 #[cfg(target_arch = "wasm32")]
 pub use download::download;
