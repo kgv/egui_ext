@@ -1,4 +1,21 @@
-use egui::{Response, Tooltip, Ui};
+use egui::{InnerResponse, Response, Tooltip, Ui};
+
+/// Extension methods for [`InnerResponse`]
+pub trait InnerResponseExt<T, E> {
+    fn transpose(self) -> Result<Option<InnerResponse<T>>, E>;
+}
+
+impl<T, E> InnerResponseExt<T, E> for Option<InnerResponse<Result<T, E>>> {
+    fn transpose(self) -> Result<Option<InnerResponse<T>>, E> {
+        match self {
+            Some(InnerResponse { inner, response }) => Ok(Some(InnerResponse {
+                inner: inner?,
+                response,
+            })),
+            None => Ok(None),
+        }
+    }
+}
 
 /// Extension methods for [`Response`]
 pub trait ResponseExt: Sized {
