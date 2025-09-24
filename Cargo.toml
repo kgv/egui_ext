@@ -11,7 +11,7 @@ egui_extras = "0.32.3"
 thiserror = "2.0.16"
 
 egui_commonmark = { version = "0.21.1", optional = true }
-mathjax_svg = { version = "3.1.2", optional = true }
+mathjax_svg = { version = "=3.1.2", optional = true }
 tracing = { version = "0.1.41", optional = true }
 
 # Web
