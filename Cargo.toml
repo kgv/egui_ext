@@ -16,7 +16,6 @@ tracing = { version = "0.1.41", optional = true }
 
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-gloo-utils = "0.2.0"
 js-sys = "0.3.81"
 wasm-bindgen = "0.2.104"
 web-sys = { version = "0.3.81", features = [
