@@ -9,12 +9,16 @@ pub use self::{
     labeled_separator::LabeledSeparator,
     light_dark_button::LightDarkButton,
     response::{InnerResponseExt, ResponseExt},
+    ui::Doi,
     with_visuals::WithVisuals,
 };
 #[cfg(target_arch = "wasm32")]
 pub use download::download;
 #[cfg(feature = "markdown")]
 pub use markdown::Markdown;
+
+pub mod ui;
+pub mod widgets;
 
 mod collapsing_button;
 mod collapsing_state;
