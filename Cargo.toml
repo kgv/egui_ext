@@ -1,6 +1,6 @@
 [package]
 name = "egui_ext"
-version = "0.4.1"
+version = "0.5.0"
 edition = "2024"
 
 [dependencies]
@@ -16,9 +16,9 @@ tracing = { version = "0.1.41", optional = true }
 
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.81"
-wasm-bindgen = "0.2.104"
-web-sys = { version = "0.3.81", features = [
+js-sys = "0.3.82"
+wasm-bindgen = "0.2.105"
+web-sys = { version = "0.3.82", features = [
     "FilePropertyBag",
     "HtmlAnchorElement",
     "Url",
