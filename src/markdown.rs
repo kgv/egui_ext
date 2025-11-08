@@ -37,9 +37,7 @@ impl Markdown for Ui {
                         uri: uri.into(),
                         bytes: Bytes::Shared(svg.clone()),
                     })
-                    .bg_fill(Color32::TRANSPARENT)
-                    .tint(Color32::RED)
-                    // .tint(Color32::LIGHT_BLUE)
+                    .tint(ui.visuals().strong_text_color())
                     .fit_to_original_size(1.0),
                 );
             }))
@@ -53,6 +51,7 @@ fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
     } else {
         mathjax_svg::convert_to_svg(math).unwrap()
     }
+    .replace("currentColor", "white")
     .into_bytes()
     .into()
 }
