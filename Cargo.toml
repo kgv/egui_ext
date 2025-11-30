@@ -1,24 +1,24 @@
 [package]
 name = "egui_ext"
-version = "0.5.1"
+version = "0.5.2"
 edition = "2024"
 
 [dependencies]
 eframe = { version = "0.33.2", default-features = false }
 egui = { version = "0.33.2", default-features = false }
-egui-phosphor = "0.10.0"
+egui-phosphor = "0.11.0"
 egui_extras = "0.33.2"
 thiserror = "2.0.17"
 
 egui_commonmark = { version = "0.22.0", optional = true }
 mathjax_svg = { version = "=3.1.2", optional = true }
-tracing = { version = "0.1.41", optional = true }
+tracing = { version = "0.1.43", optional = true }
 
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.82"
-wasm-bindgen = "0.2.105"
-web-sys = { version = "0.3.82", features = [
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.106"
+web-sys = { version = "0.3.83", features = [
     "FilePropertyBag",
     "HtmlAnchorElement",
     "Url",
