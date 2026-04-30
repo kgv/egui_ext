@@ -7,7 +7,7 @@ pub use self::{
     label::ClickedLabel,
     labeled_separator::LabeledSeparator,
     response::{InnerResponseExt, ResponseExt},
-    ui::Doi,
+    ui::{Doi, LightDarkButton},
 };
 
 #[cfg(target_arch = "wasm32")]
@@ -22,6 +22,7 @@ pub mod prelude {
         label::ClickedLabel,
         labeled_separator::LabeledSeparator,
         response::{InnerResponseExt as _, ResponseExt as _},
+        ui::{Doi as _, LightDarkButton as _},
     };
 
     #[cfg(feature = "markdown")]
