@@ -41,7 +41,8 @@ impl Markdown for Ui {
                     .fit_to_original_size(1.0),
                 );
             }))
-            .show(self, &mut cache.1.lock(), markdown);
+            .show_scrollable(self.next_auto_id(), self, &mut cache.1.lock(), markdown)
+        // .show(self, &mut cache.1.lock(), markdown);
     }
 }
 

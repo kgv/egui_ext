@@ -10,7 +10,9 @@ egui-phosphor = "0.12.0"
 egui_extras = "0.34.2"
 thiserror = "2.0.18"
 
-egui_commonmark = { version = "0.23.0", optional = true }
+egui_commonmark = { version = "0.23.0", features = [
+    "pulldown_cmark",
+], optional = true }
 ratex-layout = { version = "0.1.4", optional = true }
 ratex-parser = { version = "0.1.4", optional = true }
 ratex-svg = { version = "0.1.4", features = ["embed-fonts"], optional = true }
