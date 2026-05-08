@@ -70,7 +70,7 @@ fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
         let display_list = to_display_list(&layout);
         render_to_svg(&display_list, &svg_opts)
     }
-    .replace("currentColor", "white")
+    // .replace("currentColor", "white")
     .into_bytes()
     .into()
 }
