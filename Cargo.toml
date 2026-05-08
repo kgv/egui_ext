@@ -13,7 +13,8 @@ thiserror = "2.0.18"
 egui_commonmark = { version = "0.23.0", optional = true }
 ratex-layout = { version = "0.1.4", optional = true }
 ratex-parser = { version = "0.1.4", optional = true }
-ratex-svg = { version = "0.1.4", optional = true }
+ratex-svg = { version = "0.1.4", features = ["embed-fonts"], optional = true }
+ratex-types = { version = "0.1.4", optional = true }
 tracing = { version = "0.1.44", optional = true }
 
 # Web
@@ -27,11 +28,12 @@ web-sys = { version = "0.3.98", features = [
 ] }
 
 [features]
-default = []
+default = ["markdown"]
 markdown = [
     "dep:egui_commonmark",
     "dep:ratex-layout",
     "dep:ratex-parser",
     "dep:ratex-svg",
+    "dep:ratex-types",
     "egui_extras/svg",
 ]
