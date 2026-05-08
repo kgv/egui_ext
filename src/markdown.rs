@@ -51,7 +51,14 @@ fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
     use ratex_svg::{SvgOptions, render_to_svg};
 
     let layout_opts = LayoutOptions::default();
-    let svg_opts = SvgOptions::default();
+    let svg_opts = SvgOptions {
+        // font_size: render_opts.font_size as f64,
+        // padding: render_opts.padding as f64,
+        stroke_width: 1.5,
+        embed_glyphs: true,
+        ..Default::default()
+        // font_dir: render_opts.font_dir.clone(),
+    };
     if inline {
         let ast = parse(math).unwrap();
         let layout = layout(&ast, &layout_opts);
