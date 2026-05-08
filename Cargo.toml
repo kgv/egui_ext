@@ -4,26 +4,38 @@ version = "0.6.1"
 edition = "2024"
 
 [dependencies]
-eframe = { version = "0.34.1", default-features = false }
-egui = { version = "0.34.1", default-features = false }
+eframe = { version = "0.34.2", default-features = false }
+egui = { version = "0.34.2", default-features = false }
 egui-phosphor = "0.12.0"
-egui_extras = "0.34.1"
+egui_extras = "0.34.2"
 thiserror = "2.0.18"
 
-egui_commonmark = { version = "0.23.0", optional = true }
-mathjax_svg = { version = "=3.1.2", optional = true }
+egui_commonmark = { version = "0.23.0", features = [
+    "pulldown_cmark",
+], optional = true }
+ratex-layout = { version = "0.1.4", optional = true }
+ratex-parser = { version = "0.1.4", optional = true }
+ratex-svg = { version = "0.1.4", features = ["embed-fonts"], optional = true }
+ratex-types = { version = "0.1.4", optional = true }
 tracing = { version = "0.1.44", optional = true }
 
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.95"
-wasm-bindgen = "0.2.118"
-web-sys = { version = "0.3.95", features = [
+js-sys = "0.3.98"
+wasm-bindgen = "0.2.121"
+web-sys = { version = "0.3.98", features = [
     "FilePropertyBag",
     "HtmlAnchorElement",
     "Url",
 ] }
 
 [features]
-default = []
-markdown = ["dep:egui_commonmark", "dep:mathjax_svg", "egui_extras/svg"]
+default = ["markdown"]
+markdown = [
+    "dep:egui_commonmark",
+    "dep:ratex-layout",
+    "dep:ratex-parser",
+    "dep:ratex-svg",
+    "dep:ratex-types",
+    "egui_extras/svg",
+]

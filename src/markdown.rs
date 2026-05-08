@@ -1,4 +1,4 @@
-use egui::{Color32, Id, Image, ImageSource, Ui, load::Bytes, mutex::Mutex};
+use egui::{Id, Image, ImageSource, Rgba, Ui, load::Bytes, mutex::Mutex};
 use egui_commonmark::{CommonMarkCache, CommonMarkViewer};
 use std::{collections::HashMap, sync::Arc};
 
@@ -28,30 +28,53 @@ impl Markdown for Ui {
         CommonMarkViewer::new()
             .render_math_fn(Some(&move |ui, math, inline| {
                 let mut cache = cache.0.lock();
+                let color = ui.visuals().strong_text_color();
                 let svg = cache
                     .entry(math.to_string())
-                    .or_insert_with(|| render_math(math, inline));
+                    .or_insert_with(|| render_math(math, inline, color.into()));
                 let uri = format!("{}.svg", Id::from(math.to_string()).value());
                 ui.add(
                     Image::new(ImageSource::Bytes {
                         uri: uri.into(),
                         bytes: Bytes::Shared(svg.clone()),
                     })
-                    .tint(ui.visuals().strong_text_color())
                     .fit_to_original_size(1.0),
                 );
             }))
-            .show(self, &mut cache.1.lock(), markdown);
+            .show_scrollable(self.next_auto_id(), self, &mut cache.1.lock(), markdown)
+        // .show(self, &mut cache.1.lock(), markdown);
     }
 }
 
-fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
-    if inline {
-        mathjax_svg::convert_to_svg_inline(math).unwrap()
-    } else {
-        mathjax_svg::convert_to_svg(math).unwrap()
-    }
-    .replace("currentColor", "white")
-    .into_bytes()
-    .into()
+fn render_math(math: &str, inline: bool, color: Rgba) -> Arc<[u8]> {
+    use ratex_layout::{LayoutOptions, layout, to_display_list};
+    use ratex_parser::parser::parse;
+    use ratex_svg::{SvgOptions, render_to_svg};
+    use ratex_types::{MathStyle, color::Color};
+
+    let layout_opts = LayoutOptions {
+        style: if inline {
+            MathStyle::Text
+        } else {
+            MathStyle::Display
+        },
+        color: Color {
+            r: color.r(),
+            g: color.g(),
+            b: color.b(),
+            a: color.a(),
+        },
+        ..Default::default()
+    };
+    let svg_opts = SvgOptions {
+        font_size: 20.0,
+        // padding: 10.0,
+        // stroke_width: 1.5,
+        embed_glyphs: true,
+        ..Default::default()
+    };
+    let ast = parse(math).unwrap();
+    let layout = layout(&ast, &layout_opts);
+    let display_list = to_display_list(&layout);
+    render_to_svg(&display_list, &svg_opts).into_bytes().into()
 }
