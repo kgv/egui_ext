@@ -49,9 +49,14 @@ fn render_math(math: &str, inline: bool, color: Rgba) -> Arc<[u8]> {
     use ratex_layout::{LayoutOptions, layout, to_display_list};
     use ratex_parser::parser::parse;
     use ratex_svg::{SvgOptions, render_to_svg};
-    use ratex_types::color::Color;
+    use ratex_types::{MathStyle, color::Color};
 
     let layout_opts = LayoutOptions {
+        style: if inline {
+            MathStyle::Text
+        } else {
+            MathStyle::Display
+        },
         color: Color {
             r: color.r(),
             g: color.g(),
@@ -67,17 +72,8 @@ fn render_math(math: &str, inline: bool, color: Rgba) -> Arc<[u8]> {
         embed_glyphs: true,
         ..Default::default()
     };
-    if inline {
-        let ast = parse(math).unwrap();
-        let layout = layout(&ast, &layout_opts);
-        let display_list = to_display_list(&layout);
-        render_to_svg(&display_list, &svg_opts)
-    } else {
-        let ast = parse(math).unwrap();
-        let layout = layout(&ast, &layout_opts);
-        let display_list = to_display_list(&layout);
-        render_to_svg(&display_list, &svg_opts)
-    }
-    .into_bytes()
-    .into()
+    let ast = parse(math).unwrap();
+    let layout = layout(&ast, &layout_opts);
+    let display_list = to_display_list(&layout);
+    render_to_svg(&display_list, &svg_opts).into_bytes().into()
 }
