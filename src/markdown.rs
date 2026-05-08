@@ -46,10 +46,22 @@ impl Markdown for Ui {
 }
 
 fn render_math(math: &str, inline: bool) -> Arc<[u8]> {
+    use ratex_layout::{LayoutOptions, layout, to_display_list};
+    use ratex_parser::parser::parse;
+    use ratex_svg::{SvgOptions, render_to_svg};
+
+    let layout_opts = LayoutOptions::default();
+    let svg_opts = SvgOptions::default();
     if inline {
-        mathjax_svg::convert_to_svg_inline(math).unwrap()
+        let ast = parse(math).unwrap();
+        let layout = layout(&ast, &layout_opts);
+        let display_list = to_display_list(&layout);
+        render_to_svg(&display_list, &svg_opts)
     } else {
-        mathjax_svg::convert_to_svg(math).unwrap()
+        let ast = parse(math).unwrap();
+        let layout = layout(&ast, &layout_opts);
+        let display_list = to_display_list(&layout);
+        render_to_svg(&display_list, &svg_opts)
     }
     .replace("currentColor", "white")
     .into_bytes()
