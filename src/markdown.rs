@@ -33,16 +33,16 @@ impl Markdown for Ui {
                     .entry(math.to_string())
                     .or_insert_with(|| render_math(math, inline, color.into()));
                 let uri = format!("{}.svg", Id::from(math.to_string()).value());
-                ui.add(
-                    Image::new(ImageSource::Bytes {
-                        uri: uri.into(),
-                        bytes: Bytes::Shared(svg.clone()),
-                    })
-                    .fit_to_original_size(1.0),
-                );
+                let mut image = Image::new(ImageSource::Bytes {
+                    uri: uri.into(),
+                    bytes: Bytes::Shared(svg.clone()),
+                });
+                if !inline {
+                    image = image.fit_to_original_size(0.5);
+                }
+                ui.add(image);
             }))
             .show_scrollable(self.next_auto_id(), self, &mut cache.1.lock(), markdown)
-        // .show(self, &mut cache.1.lock(), markdown);
     }
 }
 
@@ -67,7 +67,8 @@ fn render_math(math: &str, inline: bool, color: Rgba) -> Arc<[u8]> {
         ..Default::default()
     };
     let svg_opts = SvgOptions {
-        font_size: 20.0,
+        // font_size: if inline { 40.0 } else { 80.0 },
+        // font_size: 40.0,
         // padding: 10.0,
         // stroke_width: 1.5,
         embed_glyphs: true,
