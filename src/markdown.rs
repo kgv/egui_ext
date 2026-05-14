@@ -1,4 +1,4 @@
-use egui::{Id, Image, ImageSource, Rgba, Ui, load::Bytes, mutex::Mutex};
+use egui::{Id, Image, ImageSource, Rgba, ScrollArea, Ui, load::Bytes, mutex::Mutex};
 use egui_commonmark::{CommonMarkCache, CommonMarkViewer};
 use std::{collections::HashMap, sync::Arc};
 
@@ -25,6 +25,7 @@ impl Markdown for Ui {
                 .clone()
             }),
         );
+
         CommonMarkViewer::new()
             .render_math_fn(Some(&move |ui, math, inline| {
                 let mut cache = cache.0.lock();
@@ -41,8 +42,10 @@ impl Markdown for Ui {
                     .fit_to_original_size(1.0),
                 );
             }))
-            .show_scrollable(self.next_auto_id(), self, &mut cache.1.lock(), markdown)
-        // .show(self, &mut cache.1.lock(), markdown);
+            .show(self, &mut cache.1.lock(), markdown);
+        // TODO: https://github.com/lampsitter/egui_commonmark/issues/87
+        // ScrollArea::vertical().show(self, |ui| { });
+        // .show_scrollable(self.next_auto_id(), self, &mut cache.1.lock(), markdown)
     }
 }
 
