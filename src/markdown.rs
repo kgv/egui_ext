@@ -39,7 +39,7 @@ impl Markdown for Ui {
                         bytes: Bytes::Shared(svg.clone()),
                     });
                     if !inline {
-                        image = image.fit_to_original_size(0.25);
+                        image = image.fit_to_original_size(0.33);
                     }
                     ui.add(image);
                 }))
