@@ -26,10 +26,10 @@ impl Markdown for Ui {
             }),
         );
         ScrollArea::vertical().show(self, |ui| {
+            let color = ui.visuals().strong_text_color();
             CommonMarkViewer::new()
                 .render_math_fn(Some(&move |ui, math, inline| {
                     let mut cache = cache.0.lock();
-                    let color = ui.visuals().strong_text_color();
                     let svg = cache
                         .entry(math.to_string())
                         .or_insert_with(|| render_math(math, inline, color.into()));
