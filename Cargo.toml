@@ -19,9 +19,14 @@ ratex-svg = { version = "0.1.4", features = ["embed-fonts"], optional = true }
 ratex-types = { version = "0.1.4", optional = true }
 tracing = { version = "0.1.44", optional = true }
 
+# native
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+poll-promise = { version = "0.3.0", features = ["tokio"] }
+
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 js-sys = "0.3.98"
+poll-promise = { version = "0.3.0", features = ["web"] }
 wasm-bindgen = "0.2.121"
 web-sys = { version = "0.3.98", features = [
     "FilePropertyBag",

@@ -1,3 +1,33 @@
+pub mod collapsing_button;
+pub mod collapsing_state;
+pub mod color;
+#[cfg(target_arch = "wasm32")]
+pub mod download;
+pub mod dropped_file;
+pub mod hovered_file;
+pub mod label;
+pub mod labeled_separator;
+#[cfg(feature = "markdown")]
+pub mod markdown;
+pub mod response;
+pub mod spawn;
+pub mod ui;
+pub mod widgets;
+
+pub mod prelude {
+    pub use crate::{
+        dropped_file::DroppedFileExt,
+        hovered_file::HoveredFileExt,
+        label::ClickedLabel,
+        labeled_separator::LabeledSeparator,
+        response::{InnerResponseExt as _, ResponseExt as _},
+        ui::{Doi as _, LightDarkButton as _},
+    };
+
+    #[cfg(feature = "markdown")]
+    pub use crate::markdown::Markdown;
+}
+
 pub use self::{
     collapsing_button::CollapsingButton,
     collapsing_state::CollapsingStateExt,
@@ -14,35 +44,3 @@ pub use self::{
 pub use download::download;
 #[cfg(feature = "markdown")]
 pub use markdown::Markdown;
-
-pub mod prelude {
-    pub use crate::{
-        dropped_file::DroppedFileExt,
-        hovered_file::HoveredFileExt,
-        label::ClickedLabel,
-        labeled_separator::LabeledSeparator,
-        response::{InnerResponseExt as _, ResponseExt as _},
-        ui::{Doi as _, LightDarkButton as _},
-    };
-
-    #[cfg(feature = "markdown")]
-    pub use crate::markdown::Markdown;
-}
-
-pub mod ui;
-pub mod widgets;
-
-#[cfg(target_arch = "wasm32")]
-pub mod download;
-
-mod collapsing_button;
-mod collapsing_state;
-mod color;
-mod dropped_file;
-mod hovered_file;
-mod label;
-mod labeled_separator;
-mod response;
-
-#[cfg(feature = "markdown")]
-mod markdown;
