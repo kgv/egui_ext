@@ -1,7 +1,6 @@
 use egui::DroppedFile;
 use std::{
     fmt::{self, Formatter},
-    fs::read,
     io,
     string::FromUtf8Error,
 };
@@ -9,44 +8,31 @@ use thiserror::Error;
 
 /// Extension methods for [`DroppedFile`]
 pub trait DroppedFileExt {
-    fn bytes(&self) -> Result<Vec<u8>>;
+    // fn bytes(&self) -> Result<Vec<u8>>;
 
     fn content(&self) -> Result<String>;
 
-    fn display(&self) -> Display<'_>;
+    fn display(&self) -> Display<&Self>;
 
     fn name(&self) -> &str;
 }
 
-impl DroppedFileExt for DroppedFile {
-    fn bytes(&self) -> Result<Vec<u8>> {
-        Ok(match &self.bytes {
-            Some(bytes) => bytes.to_vec(),
-            None => match &self.path {
-                Some(path) => read(path)?,
-                None => return Err(Error::BytesOrPathNotFoud),
-            },
-        })
-    }
-
+impl<T: DroppedFile> DroppedFileExt for T {
     fn content(&self) -> Result<String> {
-        Ok(String::from_utf8(self.bytes()?)?)
+        Ok(String::from_utf8(self.bytes().unwrap())?)
     }
 
-    fn display(&self) -> Display<'_> {
+    fn display(&self) -> Display<&Self> {
         Display(self)
     }
 
     fn name(&self) -> &str {
         if let Some(name) = &self
-            .path
-            .as_ref()
-            .and_then(|path| path.file_name())
+            .path()
+            .file_name()
             .and_then(|file_name| file_name.to_str())
         {
             name
-        } else if !self.name.is_empty() {
-            &self.name
         } else {
             "???"
         }
@@ -55,20 +41,24 @@ impl DroppedFileExt for DroppedFile {
 
 /// Display
 #[derive(Clone, Copy, Debug)]
-pub struct Display<'a>(&'a DroppedFile);
+pub struct Display<T>(T);
 
-impl fmt::Display for Display<'_> {
+impl<T: DroppedFile> fmt::Display for Display<T> {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        if let Some(path) = &self.0.path {
-            write!(f, "{}", path.display())?;
-        } else if !self.0.name.is_empty() {
-            write!(f, "{}", self.0.name)?;
-        } else {
-            f.write_str("???")?;
-        };
-        if let Some(bytes) = &self.0.bytes {
+        write!(f, "{}", self.0.path().display())?;
+        if let Ok(bytes) = &self.0.bytes() {
             write!(f, " ({} bytes)", bytes.len()).ok();
         }
+        // if let Some(path) = &self.0.path {
+        //     write!(f, "{}", path.display())?;
+        // } else if !self.0.name.is_empty() {
+        //     write!(f, "{}", self.0.name)?;
+        // } else {
+        //     f.write_str("???")?;
+        // };
+        // if let Some(bytes) = &self.0.bytes {
+        //     write!(f, " ({} bytes)", bytes.len()).ok();
+        // }
         Ok(())
     }
 }
@@ -82,6 +72,8 @@ pub enum Error {
     Io(#[from] io::Error),
     #[error(transparent)]
     Utf8(#[from] FromUtf8Error),
+    // #[error("{_0}")]
+    // Bytes(#[from] String),
 }
 
 /// Result

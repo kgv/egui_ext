@@ -1,8 +1,7 @@
 use egui::{
-    Button, Id, InnerResponse, Response, Ui, Vec2, WidgetText,
+    AsId, Button, Id, InnerResponse, Response, Ui, Vec2, WidgetText,
     collapsing_header::paint_default_icon, pos2,
 };
-use std::hash::Hash;
 
 /// Collapsing button
 #[derive(Clone)]
@@ -23,7 +22,7 @@ impl CollapsingButton {
         }
     }
 
-    pub fn id_source(mut self, id_source: impl Hash) -> Self {
+    pub fn id_source(mut self, id_source: impl AsId) -> Self {
         self.id_source = Id::new(id_source);
         self
     }

@@ -4,19 +4,19 @@ version = "0.6.1"
 edition = "2024"
 
 [dependencies]
-eframe = { version = "0.34.2", default-features = false }
-egui = { version = "0.34.2", default-features = false }
-egui-phosphor = "0.12.0"
-egui_extras = "0.34.2"
-thiserror = "2.0.18"
+eframe = { version = "0.36.2", default-features = false }
+egui = { version = "0.36.2", default-features = false }
+egui-phosphor = "0.13.0"
+egui_extras = "0.36.2"
+thiserror = "2.0.20"
 
-egui_commonmark = { version = "0.23.0", features = [
+egui_commonmark = { version = "0.25.0", features = [
     "pulldown_cmark",
 ], optional = true }
-ratex-layout = { version = "0.1.4", optional = true }
-ratex-parser = { version = "0.1.4", optional = true }
-ratex-svg = { version = "0.1.4", features = ["embed-fonts"], optional = true }
-ratex-types = { version = "0.1.4", optional = true }
+ratex-layout = { version = "0.1.14", optional = true }
+ratex-parser = { version = "0.1.14", optional = true }
+ratex-svg = { version = "0.1.14", features = ["embed-fonts"], optional = true }
+ratex-types = { version = "0.1.14", optional = true }
 tracing = { version = "0.1.44", optional = true }
 
 # native
@@ -25,10 +25,10 @@ poll-promise = { version = "0.3.0", features = ["tokio"] }
 
 # Web
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.98"
+js-sys = "0.3.105"
 poll-promise = { version = "0.3.0", features = ["web"] }
-wasm-bindgen = "0.2.121"
-web-sys = { version = "0.3.98", features = [
+wasm-bindgen = "0.2.128"
+web-sys = { version = "0.3.105", features = [
     "FilePropertyBag",
     "HtmlAnchorElement",
     "Url",
